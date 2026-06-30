@@ -1,0 +1,31 @@
+baseURL = "https://go-ruby-cmath.github.io/"
+title = "go-ruby-cmath"
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[[params.phases]]
+  name = "The Number value model"
+  status = "ready"
+  blurb = "A `Number` is a real-or-complex value, the Go analogue of Ruby's `Float`-or-`Complex` — `Real(x)` and `Complex(re, im)` build arguments, and `Complex(re, 0)` stays complex exactly as `Complex(1, 0).real?` is `false` in Ruby."
+[[params.phases]]
+  name = "Real-vs-complex branch"
+  status = "ready"
+  blurb = "Each function returns a **real** result on the real branch (`Sqrt(Real(4))` is `2.0`) and a **complex** result otherwise (`Sqrt(Real(-4))` is `(0+2i)`), reproducing CMath's exact real-vs-complex decision."
+[[params.phases]]
+  name = "Roots, exp & log"
+  status = "ready"
+  blurb = "`Sqrt`, `Cbrt`, `Exp`, `Log` (with optional base), `Log2`, `Log10` — mirroring `CMath.sqrt` / `cbrt` / `exp` / `log` / `log2` / `log10`, on MRI's principal branch cuts."
+[[params.phases]]
+  name = "Trig & hyperbolic"
+  status = "ready"
+  blurb = "`Sin` / `Cos` / `Tan`, `Sinh` / `Cosh` / `Tanh`, and the inverses `Asin` / `Acos` / `Atan` / `Atan2` / `Asinh` / `Acosh` / `Atanh` — the inverses built from this package's own `Log` and `Sqrt`, exactly as the cmath gem builds them."
+[[params.phases]]
+  name = "MRI branch cuts"
+  status = "ready"
+  blurb = "Outside the real branch, each function uses the **same closed-form expression** CMath's Ruby source uses, so the principal branch cuts and float results agree with `ruby -rcmath` to floating-point rounding."
+[[params.phases]]
+  name = "MRI oracle & coverage"
+  status = "ready"
+  blurb = "Golden values captured from MRI 4.0.5 hold coverage at 100%; an oracle suite drives `ruby -rcmath` across a broad real / negative / out-of-domain / complex corpus. Green across all six 64-bit Go arches and three OSes, cgo disabled."
